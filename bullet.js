@@ -31,6 +31,8 @@ Bullet.prototype.update = function(){
 	else if (top < -20){
 		this.destroyed = true;
 	}
+	this.x = left;
+	this.y = top;
 	this.element.css({
 		left: left,
 		top: top,
@@ -39,4 +41,10 @@ Bullet.prototype.update = function(){
 
 Bullet.prototype.remove = function(){
 	this.element.remove();
+}
+
+Bullet.prototype.hits = function(asteroid){
+	var hitX = this.x > asteroid.x && this.x < (asteroid.x + asteroid.width);
+	var hitY = this.y > asteroid.y && this.y < (asteroid.y + asteroid.width);
+	return hitX && hitY;
 }

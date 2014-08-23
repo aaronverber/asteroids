@@ -38,19 +38,33 @@ $(function(){
 	    e.preventDefault(); // prevent the default action (scroll / move caret)
 	});
 	setInterval(function(){
-		for (var i = 0; i < asteroids.length; i++){
-			asteroids[i].update();	
-		}
+		_.each(asteroids, function(asteroid){
+			asteroid.update();
+		});
 		for (var i = 0; i < bullets.length; i++){
 			var bullet = bullets[i];
 			if(!bullet.destroyed){
 				bullet.update();
+				for (var j = 0; j < asteroids.length; j++){
+					if(bullet.hits(asteroids[j])){
+						var newAsteroids = asteroids[j].explode();
+						for (var k = 0; k < newAsteroids.length; k++){
+							newAsteroids[k].render(gameboard);
+							asteroids.push(newAsteroids[k]);
+						}
+						bullet.remove();
+						break;
+					}
+				}
 			} else{
 				bullet.remove();
 			}
 		}
 		bullets = _.filter(bullets, function(bullet){
 			return !bullet.destroyed;
+		});
+		asteroids = _.filter(asteroids, function(asteroid){
+			return !asteroid.destroyed;
 		});
 		spaceship.update();
 	}, 16)

@@ -1,6 +1,8 @@
 var Asteroid = function(){
 	this.x = Math.round(Math.random()*500);
 	this.y = Math.round(Math.random()*500);
+	this.width = 50;
+	this.height = 50;
 	this.speed = Math.round(Math.random()*2);
 	this.direction = Math.round(Math.random()*360);
 	this.element = $("<img src=\"images/asteroid.png\" class=\"asteroid\">");
@@ -31,8 +33,20 @@ Asteroid.prototype.update = function(){
 	else if (top < -20){
 		top = 500;
 	}
+	this.x = left;
+	this.y = top;
 	this.element.css({
 		left: left,
 		top: top,
 	});
+};
+
+Asteroid.prototype.explode = function(){
+	this.element.remove();
+	this.destroyed = true;
+	var childAsteroids = [];
+	for (var i = 0; i < 3; i++){
+		childAsteroids.push(new Asteroid());
+	}
+	return childAsteroids;
 };
