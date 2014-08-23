@@ -1,0 +1,23 @@
+#gameboard{
+		width: 500px;
+		height: 500px;
+		border: 2px solid black;
+		position: relative;
+		overflow: hidden;
+}
+#spaceship{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+}
+.asteroid{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+}
+.bullet{
+    height: 5px;
+    width: 5px;
+    background-color: red;
+    position: absolute;
+}
