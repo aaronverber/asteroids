@@ -40,6 +40,9 @@ $(function(){
 	setInterval(function(){
 		_.each(asteroids, function(asteroid){
 			asteroid.update();
+			if (asteroid.hits(spaceship)){
+				spaceship.damage();
+			}
 		});
 		for (var i = 0; i < bullets.length; i++){
 			var bullet = bullets[i];

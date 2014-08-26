@@ -41,10 +41,7 @@ Bullet.prototype.update = function(){
 
 Bullet.prototype.remove = function(){
 	this.element.remove();
+	this.destroyed = true;
 }
 
-Bullet.prototype.hits = function(asteroid){
-	var hitX = this.x > asteroid.x && this.x < (asteroid.x + asteroid.width);
-	var hitY = this.y > asteroid.y && this.y < (asteroid.y + asteroid.width);
-	return hitX && hitY;
-}
+Bullet.prototype.hits = hits;

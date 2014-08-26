@@ -1,12 +1,19 @@
 var Spaceship = function(){
 	this.x = 0;
 	this.y = 0;
+	this.height = 50;
+	this.width = 50;
 	this.rotation = 0;
+	this.health = 3;
 	this.element = $("<img src=\"images/spaceship.png\" id=\"spaceship\">");
 }
 
 Spaceship.prototype.render = function(gameboard){
 	gameboard.append(this.element);
+	var playerStats = $("#player-stats");
+	for (var i = 0; i < this.health; i++){
+		playerStats.append($('<img class="heart" src="./images/heart.png">'));
+	}
 }
 	
 Spaceship.prototype.update = function(){
@@ -45,4 +52,8 @@ Spaceship.prototype.move = function(speed){
 	this.x+=leftVelocity;
 	this.y+=topVelocity;
 	this.setTransform();
+}
+
+Spaceship.prototype.damage = function(){
+	console.log("damage!")
 }
