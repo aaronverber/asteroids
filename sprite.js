@@ -15,7 +15,7 @@ Sprite.prototype.render = function(gameboard){
 	}
 	this.element.css({
 		"-webkit-transform":"translate("+this.x+"px,"+this.y+"px) scale("+this.scale+") rotate("+this.rotation+"deg)", 
-		"-webkit-transform-origin":"25px 25px"
+		"-webkit-transform-origin":(this.width/2) + "px "+(this.height/2)+"px"
 	})
 }
 
@@ -42,9 +42,23 @@ Sprite.prototype.update = function(){
 }
 
 Sprite.prototype.hitTest = function(sprite){
-	var hitX = this.x > sprite.x && this.x < (sprite.x + sprite.width);
-	var hitY = this.y > sprite.y && this.y < (sprite.y + sprite.width);
-	return hitX && hitY;
+	var thisLeft = this.x;
+	var thisRight = this.x + this.width;
+	var thisTop = this.y;
+	var thisBottom = this.y + this.height;
+
+	var spriteLeft = sprite.x;
+	var spriteRight = sprite.x + sprite.width;
+	var spriteTop = sprite.y;
+	var spriteBottom = sprite.y + sprite.height;
+
+	var hitLeft = thisLeft > spriteLeft && thisLeft < spriteRight;
+	var hitRight = thisRight > spriteLeft && thisRight < spriteRight;
+
+	var hitTop = thisTop > spriteTop && thisTop < spriteBottom;
+	var hitBottom = thisBottom > spriteTop && thisBottom < spriteBottom;
+
+	return (hitLeft || hitRight) && (hitTop || hitBottom);
 }
 
 Sprite.prototype.rotate = function(change){

@@ -14,9 +14,16 @@ Spaceship.prototype = new Sprite();
 // }
 	
 
-
+Spaceship.prototype.clearDamage = _.debounce(function(){
+	this.element.css({background: 'transparent'});
+}, 100);
 
 
 Spaceship.prototype.damage = function(){
+	var self = this;
+	this.element.css({
+		background: 'red'
+	});
+	this.clearDamage();
 	console.log("damage!")
 }

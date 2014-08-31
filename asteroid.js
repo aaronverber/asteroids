@@ -20,6 +20,8 @@ Asteroid.prototype.explode = function(){
 		asteroid.x = this.x;
 		asteroid.y = this.y;
 		asteroid.scale = this.scale / 2;
+		asteroid.width *= asteroid.scale;
+		asteroid.height *= asteroid.scale;
 		childAsteroids.push(asteroid);
 	}
 	return childAsteroids;
