@@ -40,7 +40,7 @@ $(function(){
 	setInterval(function(){
 		_.each(asteroids, function(asteroid){
 			asteroid.update();
-			if (asteroid.hits(spaceship)){
+			if (asteroid.hitTest(spaceship)){
 				spaceship.damage();
 			}
 		});
@@ -49,7 +49,7 @@ $(function(){
 			if(!bullet.destroyed){
 				bullet.update();
 				for (var j = 0; j < asteroids.length; j++){
-					if(bullet.hits(asteroids[j])){
+					if(bullet.hitTest(asteroids[j])){
 						var newAsteroids = asteroids[j].explode();
 						for (var k = 0; k < newAsteroids.length; k++){
 							newAsteroids[k].render(gameboard);

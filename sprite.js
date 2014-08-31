@@ -20,22 +20,31 @@ Sprite.prototype.render = function(gameboard){
 }
 
 Sprite.prototype.update = function(){
-	if(this.x > 500){
-		this.x = -20;
+	var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
+	var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
+	var left = this.x+leftVelocity;
+	if (left > 500){
+		left = -20;
 	}
-	else if(this.x < -20){
-		this.x = 500;
+	else if (left < -20){
+		left = 500;
 	}
-	if(this.y > 500){
-		this.y = -20;
+	var top = this.y+topVelocity;
+	if (top > 500){
+		top = -20;
 	}
-	else if(this.y < -20){
-		this.y = 500;
+	else if (top < -20){
+		top = 500;
 	}
+	this.x = left;
+	this.y = top;
+	this.render();
 }
 
-Sprite.prototype.hitTest = function(other){
-
+Sprite.prototype.hitTest = function(sprite){
+	var hitX = this.x > sprite.x && this.x < (sprite.x + sprite.width);
+	var hitY = this.y > sprite.y && this.y < (sprite.y + sprite.width);
+	return hitX && hitY;
 }
 
 Sprite.prototype.rotate = function(change){
