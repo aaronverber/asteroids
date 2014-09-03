@@ -40,7 +40,10 @@ $(function(){
 		_.each(asteroids, function(asteroid){
 			asteroid.update();
 			if (spaceship.hitTest(asteroid)){
-				spaceship.damage();
+				spaceship.damage(asteroid);
+			}
+			else{
+				spaceship.nohit(asteroid);
 			}
 		});
 		for (var i = 0; i < bullets.length; i++){
