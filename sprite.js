@@ -15,7 +15,9 @@ Sprite.prototype.render = function(gameboard){
 	}
 	this.element.css({
 		"-webkit-transform":"translate("+this.x+"px,"+this.y+"px) scale("+this.scale+") rotate("+this.rotation+"deg)", 
-		"-webkit-transform-origin":(this.width/2) + "px "+(this.height/2)+"px"
+		"-webkit-transform-origin":(this.width/2) + "px "+(this.height/2)+"px",
+		width: this.width,
+		height: this.height
 	})
 }
 
@@ -42,23 +44,25 @@ Sprite.prototype.update = function(){
 }
 
 Sprite.prototype.hitTest = function(sprite){
-	var thisLeft = this.x;
-	var thisRight = this.x + this.width;
-	var thisTop = this.y;
-	var thisBottom = this.y + this.height;
-
-	var spriteLeft = sprite.x;
-	var spriteRight = sprite.x + sprite.width;
-	var spriteTop = sprite.y;
-	var spriteBottom = sprite.y + sprite.height;
-
-	var hitLeft = thisLeft > spriteLeft && thisLeft < spriteRight;
-	var hitRight = thisRight > spriteLeft && thisRight < spriteRight;
-
-	var hitTop = thisTop > spriteTop && thisTop < spriteBottom;
-	var hitBottom = thisBottom > spriteTop && thisBottom < spriteBottom;
-
-	return (hitLeft || hitRight) && (hitTop || hitBottom);
+	function intersectRect(r1, r2) {
+	    return !(r2.left > r1.right || 
+            r2.right < r1.left || 
+            r2.top > r1.bottom ||
+            r2.bottom < r1.top);
+	}
+	var r1 = {
+		left:this.x, 
+		right:this.x + this.width,
+		top:this.y,
+		bottom:this.y + this.height
+	}
+	var r2 = {
+		left:sprite.x,
+		right:sprite.x + sprite.width,
+		top:sprite.y,
+		bottom:sprite.y + sprite.height
+	}
+	return intersectRect(r1, r2);
 }
 
 Sprite.prototype.rotate = function(change){

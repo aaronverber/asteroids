@@ -11,8 +11,6 @@
     position: absolute;
 }
 .asteroid{
-    height: 50px;
-    width: 50px;
     position: absolute;
 }
 .bullet{

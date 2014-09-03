@@ -11,7 +11,7 @@ Asteroid.prototype = new Sprite;
 Asteroid.prototype.explode = function(){
 	this.element.remove();
 	this.destroyed = true;
-	if (this.scale <= .25){
+	if (this.width <= 15){
 		return [];
 	}
 	var childAsteroids = [];
@@ -19,9 +19,10 @@ Asteroid.prototype.explode = function(){
 		var asteroid = new Asteroid();
 		asteroid.x = this.x;
 		asteroid.y = this.y;
-		asteroid.scale = this.scale / 2;
-		asteroid.width *= asteroid.scale;
-		asteroid.height *= asteroid.scale;
+		asteroid.scale = 1;
+		asteroid.width = this.width / 2;
+		asteroid.height = this.height / 2;
+		console.log(asteroid.width);
 		childAsteroids.push(asteroid);
 	}
 	return childAsteroids;

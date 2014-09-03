@@ -9,7 +9,6 @@ $(function(){
 
 	var spaceship = new Spaceship();
 	spaceship.render(gameboard);
-	
 
 	$(document).keydown(function(e) {
 	    switch(e.which) {
