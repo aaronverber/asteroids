@@ -4,9 +4,9 @@ var Sprite = function(){
 	this.width = 50;
 	this.height = 50;
 	this.scale = 1;
-	this.speed = 0;
-	this.direction = 0;
 	this.rotation = 0.001;
+	this.xVelocity = 0;
+	this.yVelocity = 0;
 }
 
 Sprite.prototype.render = function(gameboard){
@@ -22,25 +22,33 @@ Sprite.prototype.render = function(gameboard){
 }
 
 Sprite.prototype.update = function(){
-	var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
-	var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
-	var left = this.x+leftVelocity;
+	//var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
+	//var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
+	var outOfBounds = false;
+	var left = this.x+this.xVelocity;
 	if (left > 500){
 		left = -20;
+		outOfBounds = true;
 	}
 	else if (left < -20){
 		left = 500;
+		outOfBounds = true;
 	}
-	var top = this.y+topVelocity;
+	var top = this.y+this.yVelocity;
 	if (top > 500){
 		top = -20;
+		outOfBounds = true;
 	}
 	else if (top < -20){
 		top = 500;
+		outOfBounds = true;
 	}
 	this.x = left;
 	this.y = top;
 	this.render();
+	if(outOfBounds && this.outOfBounds){
+		this.outOfBounds();
+	}
 }
 
 Sprite.prototype.hitTest = function(sprite){
@@ -70,10 +78,15 @@ Sprite.prototype.rotate = function(change){
 	this.render();
 }
 
-Sprite.prototype.move = function(speed){
-	var leftVelocity = Math.cos((this.rotation-90) / 57.2957795) * speed;
-	var topVelocity = Math.sin((this.rotation-90) / 57.2957795) * speed;
-	this.x+=leftVelocity;
-	this.y+=topVelocity;
-	this.render();
+// Sprite.prototype.move = function(speed){
+// 	var leftVelocity = Math.cos((this.rotation-90) / 57.2957795) * speed;
+// 	var topVelocity = Math.sin((this.rotation-90) / 57.2957795) * speed;
+// 	this.x+=leftVelocity;
+// 	this.y+=topVelocity;
+// 	this.render();
+// }
+
+Sprite.prototype.accelerate = function(speed){
+	this.xVelocity += Math.cos((this.rotation-90) / 57.2957795) * speed;
+	this.yVelocity += Math.sin((this.rotation-90) / 57.2957795) * speed;
 }

@@ -1,8 +1,8 @@
 var Asteroid = function(){
 	this.x = Math.round(Math.random()*500);
 	this.y = Math.round(Math.random()*500);
-	this.speed = Math.round(Math.random()*2);
-	this.direction = Math.round(Math.random()*360);
+	this.xVelocity = Math.round(Math.random()*2-1);
+	this.yVelocity = Math.round(Math.random()*2-1);
 	this.element = $("<img src=\"images/asteroid.png\" class=\"asteroid\">");
 };
 
