@@ -3,10 +3,16 @@ var Asteroid = function(){
 	this.y = Math.round(Math.random()*500);
 	this.xVelocity = Math.round(Math.random()*2-1);
 	this.yVelocity = Math.round(Math.random()*2-1);
+	this.rotationSpeed = Math.random()*4-2;
 	this.element = $("<img src=\"images/asteroid.png\" class=\"asteroid\">");
 };
 
 Asteroid.prototype = new Sprite;
+
+Asteroid.prototype.update = function(){
+	this.rotation += this.rotationSpeed;
+	Sprite.prototype.update.call(this);
+}
 
 Asteroid.prototype.explode = function(){
 	this.element.remove();
