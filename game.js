@@ -1,6 +1,8 @@
 $(function(){
 	var asteroids = [];
-	var bullets = [];
+	var state = {
+		bullets: []
+	};
 	var gameboard = $("#gameboard");
 	for (var i = 0; i < 5; i++){
 		asteroids.push(new Asteroid());
@@ -8,7 +10,7 @@ $(function(){
 	}
 
 	var acceleration = 1;
-	var spaceship = new Spaceship();
+	var spaceship = new Spaceship(state);
 	spaceship.render(gameboard);
 
 	$(document).keydown(function(e) {
@@ -17,10 +19,8 @@ $(function(){
 		}
 	    switch(e.which) {
 	    	case 32: // bullet
-	    		var bullet = new Bullet(spaceship.x + (spaceship.width/2), spaceship.y - 7, spaceship.rotation-90);
-	    		bullet.render(gameboard);
-	    		bullets.push(bullet);
-	    	break;
+				spaceship.fireBullet(gameboard);
+		    break;
 	        case 37: // left
 	        	spaceship.rotate(-10);
 	        break;
@@ -38,7 +38,6 @@ $(function(){
 
 	        case 16: // shift
 	         	spaceship.brake(.1);
-	         	console.log(spaceship.xVelocity);
 	        break;
 
 	        default: return; // exit this handler for other keys
@@ -55,8 +54,9 @@ $(function(){
 				spaceship.nohit(asteroid);
 			}
 		});
-		for (var i = 0; i < bullets.length; i++){
-			var bullet = bullets[i];
+		
+		for (var i = 0; i < state.bullets.length; i++){
+			var bullet = state.bullets[i];
 			if(!bullet.destroyed){
 				bullet.update();
 				for (var j = 0; j < asteroids.length; j++){
@@ -75,7 +75,8 @@ $(function(){
 				bullet.remove();
 			}
 		}
-		bullets = _.filter(bullets, function(bullet){
+
+		state.bullets = _.filter(state.bullets, function(bullet){
 			return !bullet.destroyed;
 		});
 		asteroids = _.filter(asteroids, function(asteroid){

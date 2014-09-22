@@ -1,8 +1,9 @@
-var Spaceship = function(){
+var Spaceship = function(gameState){
 	this.health = 10;
 	this.element = $("<img src=\"images/newspaceship.png\" id=\"spaceship\">");
 	this.hitters = [];
 	this.score = 0;
+	this.gameState = gameState;
 }
 
 Spaceship.prototype = new Sprite();
@@ -15,6 +16,11 @@ Spaceship.prototype.render = function(gameboard){
 		playerStats.append($('<img class="heart" src="./images/heart.png">'));
 	}
 	playerStats.append($("<p>Score: "+this.score+"</p>"));
+}
+
+Spaceship.prototype.update = function(){
+	Sprite.prototype.update.call(this);
+	
 }
 	
 
@@ -46,4 +52,10 @@ Spaceship.prototype.nohit = function(asteroid){
 	this.hitters = _.filter(this.hitters, function(hitter){
 		return hitter != asteroid;
 	});
+}
+
+Spaceship.prototype.fireBullet = function(gameboard){
+	var bullet = new Bullet(this.x + (this.width/2), this.y - 7, this.rotation-90);
+	this.gameState.bullets.push(bullet);
+	bullet.render(gameboard);
 }
