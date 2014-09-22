@@ -4,7 +4,7 @@ var Bullet = function(x,y, direction){
 	this.width = 5;
 	this.height = 5;
 	var speed = 5;
-	this.element = $("<div class=\"bullet\"></div>");
+	this.element = $("<img src=\"images/bullet.png\" class=\"bullet\">");
 	this.xVelocity = Math.cos(direction / 57.2957795) * speed;
 	this.yVelocity = Math.sin(direction / 57.2957795) * speed;
 }

@@ -17,7 +17,7 @@ $(function(){
 		}
 	    switch(e.which) {
 	    	case 32: // bullet
-	    		var bullet = new Bullet(spaceship.x, spaceship.y, spaceship.rotation-90);
+	    		var bullet = new Bullet(spaceship.x + (spaceship.width/2), spaceship.y - 7, spaceship.rotation-90);
 	    		bullet.render(gameboard);
 	    		bullets.push(bullet);
 	    	break;
@@ -34,6 +34,11 @@ $(function(){
 
 	        case 40: // down
 	        	spaceship.accelerate(-acceleration);
+	        break;
+
+	        case 16: // shift
+	         	spaceship.brake(.1);
+	         	console.log(spaceship.xVelocity);
 	        break;
 
 	        default: return; // exit this handler for other keys

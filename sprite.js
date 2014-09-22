@@ -90,3 +90,31 @@ Sprite.prototype.accelerate = function(speed){
 	this.xVelocity += Math.cos((this.rotation-90) / 57.2957795) * speed;
 	this.yVelocity += Math.sin((this.rotation-90) / 57.2957795) * speed;
 }
+
+Sprite.prototype.brake = function(brakePower){
+	if (this.xVelocity > 0){
+		this.xVelocity -= brakePower;
+		if (this.xVelocity < 0){
+			this.xVelocity = 0;
+		}
+	}
+	else if (this.xVelocity < 0){
+		this.xVelocity += brakePower;
+		if (this.xVelocity > 0){
+			this.xVelocity = 0;
+		}
+	}
+
+	if (this.yVelocity > 0){
+		this.yVelocity -= brakePower;
+		if (this.YVelocity < 0){
+			this.YVelocity = 0;
+		}
+	}
+	else if (this.yVelocity < 0){
+		this.yVelocity += brakePower;
+		if (this.yVelocity > 0){
+			this.yVelocity = 0;
+		}
+	}
+}

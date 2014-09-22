@@ -16,7 +16,6 @@
 .bullet{
     height: 5px;
     width: 5px;
-    background-color: red;
     position: absolute;
 }
 .heart{

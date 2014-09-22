@@ -4,7 +4,7 @@ var Asteroid = function(){
 	this.xVelocity = Math.round(Math.random()*2-1);
 	this.yVelocity = Math.round(Math.random()*2-1);
 	this.rotationSpeed = Math.random()*4-2;
-	this.element = $("<img src=\"images/asteroid.png\" class=\"asteroid\">");
+	this.element = $("<img src=\"images/newasteroid.png\" class=\"asteroid\">");
 };
 
 Asteroid.prototype = new Sprite;
