@@ -3,7 +3,6 @@ var Spaceship = function(){
 	this.element = $("<img src=\"images/newspaceship.png\" id=\"spaceship\">");
 	this.hitters = [];
 	this.score = 0;
-	this.guns = [];
 }
 
 Spaceship.prototype = new Sprite();

@@ -19,4 +19,3 @@ Bullet.prototype.remove = function(){
 Bullet.prototype.outOfBounds = function(){
 	this.remove();
 }
-

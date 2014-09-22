@@ -17,7 +17,9 @@ $(function(){
 		}
 	    switch(e.which) {
 	    	case 32: // bullet
-	    		spaceship.fireGuns();
+	    		var bullet = new Bullet(spaceship.x + (spaceship.width/2), spaceship.y - 7, spaceship.rotation-90);
+	    		bullet.render(gameboard);
+	    		bullets.push(bullet);
 	    	break;
 	        case 37: // left
 	        	spaceship.rotate(-10);

@@ -22,7 +22,8 @@ Sprite.prototype.render = function(gameboard){
 }
 
 Sprite.prototype.update = function(){
-
+	//var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
+	//var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
 	var outOfBounds = false;
 	var left = this.x+this.xVelocity;
 	if (left > 500){
@@ -77,6 +78,14 @@ Sprite.prototype.rotate = function(change){
 	this.render();
 }
 
+// Sprite.prototype.move = function(speed){
+// 	var leftVelocity = Math.cos((this.rotation-90) / 57.2957795) * speed;
+// 	var topVelocity = Math.sin((this.rotation-90) / 57.2957795) * speed;
+// 	this.x+=leftVelocity;
+// 	this.y+=topVelocity;
+// 	this.render();
+// }
+
 Sprite.prototype.accelerate = function(speed){
 	this.xVelocity += Math.cos((this.rotation-90) / 57.2957795) * speed;
 	this.yVelocity += Math.sin((this.rotation-90) / 57.2957795) * speed;
@@ -108,10 +117,4 @@ Sprite.prototype.brake = function(brakePower){
 			this.yVelocity = 0;
 		}
 	}
-}
-
-Sprite.prototype.fireGuns = function(){
-	var bullet = new Bullet(this.x + (this.width/2), this.y - 7, this.rotation-90);
-		bullet.render(gameboard);
-		bullets.push(bullet);
 }
