@@ -1,13 +1,14 @@
-var Asteroid = function(){
+var Asteroid = function(gameboard){
 	this.x = Math.round(Math.random()*500);
 	this.y = Math.round(Math.random()*500);
 	this.xVelocity = Math.round(Math.random()*2-1);
 	this.yVelocity = Math.round(Math.random()*2-1);
 	this.rotationSpeed = Math.random()*4-2;
 	this.element = $("<img src=\"images/newasteroid.png\" class=\"asteroid\">");
+	this.gameboard = gameboard;
 };
 
-Asteroid.prototype = new Sprite;
+Asteroid.prototype = new Sprite();
 
 Asteroid.prototype.update = function(){
 	this.rotation += this.rotationSpeed;
@@ -22,7 +23,7 @@ Asteroid.prototype.explode = function(){
 	}
 	var childAsteroids = [];
 	for (var i = 0; i < 3; i++){
-		var asteroid = new Asteroid();
+		var asteroid = new Asteroid(this.gameboard);
 		asteroid.x = this.x;
 		asteroid.y = this.y;
 		asteroid.scale = 1;

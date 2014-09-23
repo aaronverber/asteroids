@@ -1,6 +1,4 @@
 #gameboard{
-		width: 500px;
-		height: 500px;
 		border: 2px solid black;
 		position: relative;
 		overflow: hidden;
@@ -20,4 +18,14 @@
 }
 .heart{
     height: 30px;
+}
+
+#score{
+    font-family: helvetica;
+}
+
+#game{
+    height: 100%;
+    width: 100%;
+    border: none;
 }

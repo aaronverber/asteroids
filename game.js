@@ -3,15 +3,20 @@ $(function(){
 	var state = {
 		bullets: []
 	};
-	var gameboard = $("#gameboard");
+
+	var game = $("#game");
+	var gameboard = new Gameboard();
+	gameboard.render(game);
+	console.log(gameboard.width);
+
 	for (var i = 0; i < 5; i++){
-		asteroids.push(new Asteroid());
-		asteroids[i].render(gameboard);
+		asteroids.push(new Asteroid(gameboard));
+		asteroids[i].render();
 	}
 
 	var acceleration = 1;
-	var spaceship = new Spaceship(state);
-	spaceship.render(gameboard);
+	var spaceship = new Spaceship(state, gameboard);
+	spaceship.render();
 
 	$(document).keydown(function(e) {
 		if(spaceship.destroyed){
@@ -64,7 +69,7 @@ $(function(){
 						spaceship.score += 100;
 						var newAsteroids = asteroids[j].explode();
 						for (var k = 0; k < newAsteroids.length; k++){
-							newAsteroids[k].render(gameboard);
+							newAsteroids[k].render();
 							asteroids.push(newAsteroids[k]);
 						}
 						bullet.remove();

@@ -9,9 +9,9 @@ var Sprite = function(){
 	this.yVelocity = 0;
 }
 
-Sprite.prototype.render = function(gameboard){
-	if(gameboard){
-		gameboard.append(this.element);
+Sprite.prototype.render = function(){
+	if(this.gameboard){
+		this.gameboard.element.append(this.element);
 	}
 	this.element.css({
 		"-webkit-transform":"translate("+this.x+"px,"+this.y+"px) scale("+this.scale+") rotate("+this.rotation+"deg)", 
@@ -22,31 +22,34 @@ Sprite.prototype.render = function(gameboard){
 }
 
 Sprite.prototype.update = function(){
+	var gameboard = this.gameboard;
 	//var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
 	//var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
 	var outOfBounds = false;
 	var left = this.x+this.xVelocity;
-	if (left > 500){
+	if (left > gameboard.width){
 		left = -20;
 		outOfBounds = true;
 	}
 	else if (left < -20){
-		left = 500;
+		left = gameboard.width;
 		outOfBounds = true;
 	}
 	var top = this.y+this.yVelocity;
-	if (top > 500){
+	if (top > gameboard.height){
 		top = -20;
 		outOfBounds = true;
 	}
 	else if (top < -20){
-		top = 500;
+		top = gameboard.height;
 		outOfBounds = true;
 	}
 	this.x = left;
 	this.y = top;
+
 	this.render();
 	if(outOfBounds && this.outOfBounds){
+
 		this.outOfBounds();
 	}
 }
