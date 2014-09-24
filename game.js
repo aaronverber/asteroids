@@ -46,6 +46,10 @@ $(function(){
 	         	spaceship.brake(.1);
 	        break;
 
+	        case 17: // shields up, captain
+	        	spaceship.shieldsUp();
+	        break;
+
 	        default: return; // exit this handler for other keys
 	    }
 	    e.preventDefault(); // prevent the default action (scroll / move caret)
@@ -54,7 +58,13 @@ $(function(){
 		_.each(asteroids, function(asteroid){
 			asteroid.update();
 			if (spaceship.hitTest(asteroid)){
-				spaceship.damage(asteroid);
+				if(spaceship.shields > 0){
+					return;
+				}
+				else{
+					spaceship.damage(asteroid);
+					console.log("damage check works");
+				};
 			}
 			else{
 				spaceship.nohit(asteroid);
