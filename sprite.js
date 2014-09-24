@@ -10,8 +10,13 @@ var Sprite = function(){
 }
 
 Sprite.prototype.render = function(){
-	if(this.gameboard){
+	if(this.destroyed){
+		return;
+	}
+	if(!this.appended){
+		this.appended = true;
 		this.gameboard.element.append(this.element);
+		console.log("added it again")
 	}
 	this.element.css({
 		"-webkit-transform":"translate("+this.x+"px,"+this.y+"px) scale("+this.scale+") rotate("+this.rotation+"deg)", 

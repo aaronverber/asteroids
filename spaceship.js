@@ -1,6 +1,6 @@
 var Spaceship = function(gameState, gameboard){
 	this.health = 10;
-	this.element = $("<img src=\"images/newspaceship.png\" id=\"spaceship\">");
+	this.element = $("<img src=\"images/spaceshipbase.png\" id=\"spaceship\">");
 	this.hitters = [];
 	this.score = 0;
 	this.gameState = gameState;
@@ -25,7 +25,7 @@ Spaceship.prototype.update = function(){
 	
 
 Spaceship.prototype.clearDamage = _.debounce(function(){
-	this.element.css({background: 'transparent'});
+	this.element.attr('src',"images/spaceshipbase.png");
 }, 100);
 
 
@@ -35,13 +35,10 @@ Spaceship.prototype.damage = function(asteroid){
 	}
 	this.hitters.push(asteroid);
 	var self = this;
-	this.element.css({
-		background: 'red'
-	});
 	this.clearDamage();
-//	console.log("damage!");
+	this.element.attr('src',"images/spaceshipbasedamage.png");
 	this.health -= 1;
-//	console.log(this.health);
+	console.log(this.health);
 	if(this.health == 0){
 		this.destroyed = true;
 		this.element.remove();
