@@ -31,6 +31,7 @@ $(function(){
 	        break;
 	        case 38: // up
 	        	spaceship.accelerate(acceleration);
+	        	spaceship.fireEngines();
 	        break;
 
 	        case 39: // right

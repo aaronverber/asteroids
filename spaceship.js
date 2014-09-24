@@ -56,3 +56,12 @@ Spaceship.prototype.fireBullet = function(){
 	this.gameState.bullets.push(bullet);
 	bullet.render();
 }
+
+Spaceship.prototype.clearEngines = _.debounce(function(){
+	this.element.attr('src',"images/spaceshipbase.png");
+}, 200);
+
+Spaceship.prototype.fireEngines = function(){
+	this.clearEngines();
+	this.element.attr('src',"images/spaceshipbaseengines.png");
+}
