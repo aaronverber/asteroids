@@ -1,6 +1,6 @@
 var Asteroid = function(gameboard){
-	this.x = Math.round(Math.random()*500);
-	this.y = Math.round(Math.random()*500);
+	this.x = Math.round(Math.random()*gameboard.width);
+	this.y = Math.round(Math.random()*gameboard.height);
 	this.xVelocity = Math.round(Math.random()*2-1);
 	this.yVelocity = Math.round(Math.random()*2-1);
 	this.rotationSpeed = Math.random()*4-2;
