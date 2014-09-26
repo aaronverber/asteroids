@@ -21,6 +21,8 @@ var Spaceship = function(gameState, gameboard){
 	this.lastDrain = new Date();
 	this.gameState = gameState;
 	this.gameboard = gameboard;
+	this.x = gameboard.width / 2;
+	this.y = gameboard.height / 2;
 }
 
 Spaceship.prototype = new Sprite();

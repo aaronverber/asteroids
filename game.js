@@ -9,7 +9,7 @@ $(function(){
 	gameboard.render(game);
 	console.log(gameboard.width);
 
-	for (var i = 0; i < 40; i++){
+	for (var i = 0; i < Math.floor((gameboard.width / gameboard.height)*10); i++){
 		asteroids.push(new Asteroid(gameboard));
 		asteroids[i].render();
 	}
