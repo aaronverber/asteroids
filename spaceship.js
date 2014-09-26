@@ -17,7 +17,8 @@ var Spaceship = function(gameState, gameboard){
 	this.element = $("<img src=\"images/spaceshipbase.png\" id=\"spaceship\">");
 	this.hitters = [];
 	this.score = 0;
-	this.shields = 0;
+	this.shieldTimer = 0;
+	this.shieldUses = 3;
 	this.lastDrain = new Date();
 	this.gameState = gameState;
 	this.gameboard = gameboard;
@@ -34,19 +35,23 @@ Spaceship.prototype.render = function(gameboard){
 	for (var i = 0; i < this.health; i++){
 		playerStats.append($('<img class="heart" src="./images/heart.png">'));
 	}
+	for (var i = 0; i < this.shieldUses; i++){
+		playerStats.append($('<img class="shield" src="./images/shield.png">'));
+	}
 	playerStats.append($("<div id=\"score\"><p>Score: "+this.score+"</p></div>"));
 }
 
 Spaceship.prototype.update = function(){
 	Sprite.prototype.update.call(this);
 	if(this.draining && timeElapsed(this.lastDrain, 1)){
-		this.shields -= 1;
+		this.shieldTimer -= 1;
 		this.lastDrain = getNow(); //set last drain to now
-		if(this.shields == 0){
+		if(this.shieldTimer == 0){
 			this.draining = false;
+			this.element.attr('src',"images/spaceshipbase.png");
 		}
 	}
-	console.log(this.shields);
+	console.log(this.shieldTimer);
 }
 	
 
@@ -60,10 +65,14 @@ Spaceship.prototype.damage = function(asteroid){
 	}
 	this.hitters.push(asteroid);
 	var self = this;
-	this.clearDamage();
-	this.element.attr('src',"images/spaceshipbasedamage.png");
-	this.health -= 1;
-	console.log(this.health);
+	if(this.shieldTimer == 0){
+		this.clearDamage();
+		this.element.attr('src',"images/spaceshipbasedamage.png");
+		this.health -= 1;
+	}
+	else{
+		return;
+	}
 	if(this.health == 0){
 		this.destroyed = true;
 		this.element.remove();
@@ -86,13 +95,35 @@ Spaceship.prototype.clearEngines = _.debounce(function(){
 	this.element.attr('src',"images/spaceshipbase.png");
 }, 200);
 
+Spaceship.prototype.clearShieldEngines = _.debounce(function(){
+	this.element.attr('src',"images/spaceshipbaseshields.png");
+}, 200);
+
 Spaceship.prototype.fireEngines = function(){
-	this.clearEngines();
-	this.element.attr('src',"images/spaceshipbaseengines.png");
+	if(this.draining == true){
+		this.clearShieldEngines();
+		this.element.attr('src',"images/spaceshipbaseshieldsengines.png")
+	}
+	else{
+		this.clearEngines();
+		this.element.attr('src',"images/spaceshipbaseengines.png");
+	}
+
 }
 
 Spaceship.prototype.shieldsUp = function(){
-	this.shields = 10;
-	this.draining = true;
-
+	if(this.shieldUses > 0){
+		this.shieldTimer = 6;
+		this.draining = true;
+		this.shieldUses -= 1;
+	}
+	else{
+		return;
+	}
+	if(this.draining == true){
+		this.element.attr('src',"images/spaceshipbaseshields.png");
+	}
+	else{
+		return;
+	}
 }

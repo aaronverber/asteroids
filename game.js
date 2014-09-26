@@ -9,7 +9,7 @@ $(function(){
 	gameboard.render(game);
 	console.log(gameboard.width);
 
-	for (var i = 0; i < Math.floor((gameboard.width / gameboard.height)*10); i++){
+	for (var i = 0; i < Math.floor(((gameboard.width / gameboard.height)*5) + gameboard.height / 100); i++){
 		asteroids.push(new Asteroid(gameboard));
 		asteroids[i].render();
 	}
@@ -46,7 +46,7 @@ $(function(){
 	         	spaceship.brake(.1);
 	        break;
 
-	        case 17: // shields up, captain
+	        case 17: // shields up, captain?
 	        	spaceship.shieldsUp();
 	        break;
 
