@@ -51,7 +51,6 @@ Spaceship.prototype.update = function(){
 			this.element.attr('src',"images/spaceshipbase.png");
 		}
 	}
-	console.log(this.shieldTimer);
 }
 	
 
@@ -86,7 +85,14 @@ Spaceship.prototype.nohit = function(asteroid){
 }
 
 Spaceship.prototype.fireBullet = function(){
-	var bullet = new Bullet(this.x + (this.width/2), this.y - 7, this.rotation-90, this.gameboard);
+	var bulletOriginRotation = this.rotation * Math.PI / 180;
+	var bulletOriginCenterX = this.x + (this.width/2) - 3;
+	var bulletOriginCenterY = this.y + (this.height/2) - 2;
+	var bulletOriginOffsetY = this.y;
+	var bulletOriginX = bulletOriginCenterX + Math.cos(bulletOriginRotation) * (bulletOriginCenterX - bulletOriginCenterX) - Math.sin(bulletOriginRotation) * (bulletOriginOffsetY - bulletOriginCenterY);
+	var bulletOriginY = bulletOriginCenterY + Math.sin(bulletOriginRotation) * (bulletOriginCenterX - bulletOriginCenterX) + Math.cos(bulletOriginRotation) * (bulletOriginOffsetY - bulletOriginCenterY);
+	console.log(bulletOriginX);
+	var bullet = new Bullet(bulletOriginX, bulletOriginY, this.rotation-90, this.gameboard);
 	this.gameState.bullets.push(bullet);
 	bullet.render();
 }

@@ -2,7 +2,7 @@
 		border: 2px solid black;
 		position: relative;
 		overflow: hidden;
-        background-image: url('images/background04.jpg');
+        background-image: url('images/background.png');
         background-size: cover;
         background-repeat: no-repeat;
 }

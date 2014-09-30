@@ -29,7 +29,6 @@ Asteroid.prototype.explode = function(){
 		asteroid.scale = 1;
 		asteroid.width = this.width / 2;
 		asteroid.height = this.height / 2;
-		console.log(asteroid.width);
 		childAsteroids.push(asteroid);
 	}
 	return childAsteroids;

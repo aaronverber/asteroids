@@ -7,7 +7,6 @@ $(function(){
 	var game = $("#game");
 	var gameboard = new Gameboard();
 	gameboard.render(game);
-	console.log(gameboard.width);
 
 	for (var i = 0; i < Math.floor(((gameboard.width / gameboard.height)*5) + gameboard.height / 100); i++){
 		asteroids.push(new Asteroid(gameboard));
@@ -63,7 +62,6 @@ $(function(){
 				}
 				else{
 					spaceship.damage(asteroid);
-					console.log("damage check works");
 				};
 			}
 			else{

@@ -16,7 +16,6 @@ Sprite.prototype.render = function(){
 	if(!this.appended){
 		this.appended = true;
 		this.gameboard.element.append(this.element);
-		console.log("added it again")
 	}
 	this.element.css({
 		"-webkit-transform":"translate("+this.x+"px,"+this.y+"px) scale("+this.scale+") rotate("+this.rotation+"deg)", 
@@ -28,8 +27,6 @@ Sprite.prototype.render = function(){
 
 Sprite.prototype.update = function(){
 	var gameboard = this.gameboard;
-	//var leftVelocity = Math.cos(this.direction / 57.2957795) * this.speed;
-	//var topVelocity = Math.sin(this.direction / 57.2957795) * this.speed;
 	var outOfBounds = false;
 	var left = this.x+this.xVelocity;
 	if (left > gameboard.width){
@@ -85,14 +82,6 @@ Sprite.prototype.rotate = function(change){
 	this.rotation += change;
 	this.render();
 }
-
-// Sprite.prototype.move = function(speed){
-// 	var leftVelocity = Math.cos((this.rotation-90) / 57.2957795) * speed;
-// 	var topVelocity = Math.sin((this.rotation-90) / 57.2957795) * speed;
-// 	this.x+=leftVelocity;
-// 	this.y+=topVelocity;
-// 	this.render();
-// }
 
 Sprite.prototype.accelerate = function(speed){
 	this.xVelocity += Math.cos((this.rotation-90) / 57.2957795) * speed;
