@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Aaron's Game</title>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
-	<link href="./index.css" rel="stylesheet">
+	<title>A Game Similar to Asteroids</title>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css" rel="stylesheet">
+<link href="./index.css" rel="stylesheet">
+
 </head>
+
 <body>
 
-<div id="game"></div>
-<div id="player-stats"></div>
-<script src ="./gameboard.js"></script>
-<script src ="./sprite.js"></script>
-<script src="./asteroid.js"></script>
-<script src="./spaceship.js"></script>
-<script src="./bullet.js"></script>
-<script src="./game.js"></script>
+<h1>Play a game largely similar to Asteroids!</h1>
+<img src="./images/spaceshipbase.png">
+<h2>by Aaron Verber</h2>
+<div id="controls">
+<p>Click PLAY to begin. Use the following controls to score as many points as you can. If you are hit 10 times, you lose.</p>
+</div>
+<dl class="dl-horizontal">
+	<dt>Up</dt>
+	<dd>Accelerate</dd>
+	<dt>Down</dt>
+	<dd>Decelerate</dd>
+	<dt>Left</dt>
+	<dd>Turn left</dd>
+	<dt>Right</dt>
+	<dd>Turn right</dd>
+	<dt>Shift</dt>
+	<dd>Apply break</dd>
+	<dt>Spacebar</dt>
+	<dd>Fire weapon</dd>
+	<dt>Ctrl</dt>
+	<dd>Raise temporary shields (three uses)</dd>
+</dl>
+
+<a href="http://asteroids.aaronverber.com/game.html" role="button" class="btn btn-success bt-lg">PLAY</a>
 
 </body>
+
 </html>

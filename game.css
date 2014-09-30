@@ -1,0 +1,54 @@
+body{
+    background-color: #111;
+
+}
+
+#gameboard{
+		border: 2px solid black;
+		position: relative;
+		overflow: hidden;
+        background-image: url('images/background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-left: auto;
+        margin-right: auto;
+}
+#spaceship{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+}
+.asteroid{
+    position: absolute;
+}
+.bullet{
+    height: 5px;
+    width: 5px;
+    position: absolute;
+}
+.heart{
+    height: 40px;
+}
+
+.shield{
+    height: 40px;
+}
+
+#score{
+    font-family: helvetica;
+    font-weight: bolder;
+    color: white;
+    margin-top: -10px;
+}
+
+#game{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+#player-stats{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
